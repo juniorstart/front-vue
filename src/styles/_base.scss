@@ -1,0 +1,9 @@
+$body-font-family: 'PT Sans';
+$title-font: 'PT Sans';
+
+.v-application {
+    font-family: $body-font-family, sans-serif !important;
+     .title {
+        font-family: $title-font, sans-serif !important;
+     }
+  }
