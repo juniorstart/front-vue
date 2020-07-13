@@ -6,9 +6,10 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
   theme: {
+    dark: true,
     themes: {
       light: {
-        primary: '#ee44aa',
+        primary: '#2ed573',
         secondary: '#424242',
         accent: '#82B1FF',
         error: '#FF5252',
@@ -16,6 +17,13 @@ export default new Vuetify({
         success: '#4CAF50',
         warning: '#FFC107'
       },
+      dark : {
+        primary: '#2ed573',
+        secondary: '#ff4757',
+        accent: '#82B1FF',
+        error: '#FF5252',
+        info: '#2196F3',
+      }
     },
   },
 });
