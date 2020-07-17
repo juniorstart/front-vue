@@ -1,0 +1,10 @@
+.slide-fade-enter-active {
+    transition: all 0.8s ease 0.3s;
+  }
+  .slide-fade-leave-active {
+    transition: all 0.3s ease;
+  }
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }

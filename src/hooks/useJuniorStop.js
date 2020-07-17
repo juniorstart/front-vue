@@ -1,9 +1,9 @@
-import { useState, useActions } from "vuex-composition-helpers/dist";
+import { useState, useActions } from 'vuex-composition-helpers/dist';
 
 export const useJuniorStop = () => {
-  const { isJuniorStart } = useState(["isJuniorStart"]);
+  const { isJuniorStart } = useState(['isJuniorStart']);
 
-  const { changeJuniorStart } = useActions(["changeJuniorStart"]);
+  const { changeJuniorStart } = useActions(['changeJuniorStart']);
 
   return {
     isJuniorStart,

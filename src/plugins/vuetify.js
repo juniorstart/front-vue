@@ -15,15 +15,15 @@ export default new Vuetify({
         error: '#FF5252',
         info: '#2196F3',
         success: '#4CAF50',
-        warning: '#FFC107'
+        warning: '#FFC107',
       },
-      dark : {
+      dark: {
         primary: '#2ed573',
         secondary: '#ff4757',
         accent: '#82B1FF',
         error: '#FF5252',
         info: '#2196F3',
-      }
+      },
     },
   },
 });

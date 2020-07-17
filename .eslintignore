@@ -1,0 +1,3 @@
+**/*.config.js
+**/tests/unit/*.spec.js
+**/tests/unit/**/*.spec.js

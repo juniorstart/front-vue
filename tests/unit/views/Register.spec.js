@@ -2,7 +2,7 @@ import Vuex from "vuex"
 import CompositionApi from '@vue/composition-api';
 import Vuetify from 'vuetify';
 import { mount, createLocalVue } from "@vue/test-utils"
-import App from "@/App.vue";
+import Register from "@/views/Register.vue";
 import store from "@/store"
 
 const vuetify = new Vuetify();
@@ -12,19 +12,18 @@ localVue.use(CompositionApi);
 localVue.use(Vuex);
 localVue.use(Vuetify);
 
+jest.mock('vue-toastification/composition');
 
-describe("App.vue", () => {
-  it("renders correct content on button", async () => {
-    const wrapper = mount(App, { 
+describe("Register.vue", () => {
+  it("renders component with disabled button", async () => {
+    const wrapper = mount(Register, { 
       store, 
       localVue,
       vuetify,
-      stubs: ['router-view']
-    })
+    });
 
-    expect(wrapper.find("button").text()).toBe("JuniorSTOP");
-    await wrapper.find('button').trigger('click');
+    expect(wrapper.find("button").attributes('disabled')).toBe('disabled');
+  });
 
-    expect(wrapper.find("button").text()).toBe("JuniorSTART");
-  })
+  // waiting for vue-testing-library with composition api support
 })
