@@ -1,7 +1,10 @@
 export const setToken = (token, isRememberMeChecked) => {
+  const KEY = 'JuniorToken';
+  const tokenJSON = JSON.stringify(token);
+
   if (isRememberMeChecked) {
-    localStorage.setItem('JuniorToken', token);
+    localStorage.setItem(KEY, tokenJSON);
   } else {
-    sessionStorage.setItem('JuniorToken', token);
+    sessionStorage.setItem(KEY, tokenJSON);
   }
 };

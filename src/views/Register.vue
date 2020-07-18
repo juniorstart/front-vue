@@ -55,5 +55,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/views/register.scss";
+@import "../styles/views/form.scss";
 </style>

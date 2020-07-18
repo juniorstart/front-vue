@@ -44,8 +44,11 @@ export default {
 
     const logIn = async () => {
       try {
-        await signIn({ user: form, isRememberMeChecked });
-        ctx.root.$router.push({ name: 'Home' });
+        const result = await signIn({ user: form, isRememberMeChecked });
+
+        if (result) {
+          ctx.root.$router.push({ name: 'Home' });
+        }
       } catch (e) {
         toast.error('Coś poszło nie tak...');
       }
@@ -63,5 +66,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/views/register.scss";
+@import "../styles/views/form.scss";
 </style>

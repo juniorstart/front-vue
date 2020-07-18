@@ -1,1 +1,1 @@
-export const getToken = () => localStorage.getItem('JuniorToken') || sessionStorage.getItem('JuniorToken') || '';
+export const getToken = () => JSON.parse(localStorage.getItem('JuniorToken') || sessionStorage.getItem('JuniorToken')) || '';

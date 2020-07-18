@@ -1,14 +1,27 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { getToken } from '@/utils/getToken';
+import Recruitments from '@/views/Recruitments/Recruitments.vue';
+import NewRecruitment from '@/views/Recruitments/Create.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: Recruitments,
+      },
+      {
+        path: 'new',
+        name: 'NewRecruitment',
+        component: NewRecruitment,
+      },
+    ],
   },
   {
     path: '/login',
