@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import { getToken } from '@/utils/getToken';
 import Recruitments from '@/views/Recruitments/Recruitments.vue';
 import NewRecruitment from '@/views/Recruitments/Create.vue';
+import EditRecruitment from '@/views/Recruitments/Edit.vue';
 
 Vue.use(VueRouter);
 
@@ -20,6 +21,11 @@ const routes = [
         path: 'new',
         name: 'NewRecruitment',
         component: NewRecruitment,
+      },
+      {
+        path: 'recruitment/:id',
+        name: 'EditRecruitment',
+        component: EditRecruitment,
       },
     ],
   },

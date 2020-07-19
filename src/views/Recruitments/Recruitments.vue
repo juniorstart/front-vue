@@ -12,8 +12,8 @@
         <v-expansion-panel-header>{{ recruitment.companyName }}</v-expansion-panel-header>
         <v-expansion-panel-content>
           <p class="text-right mb-0">
-            <v-btn class="mx-4">Edytuj</v-btn>
-            <v-btn>Usuń</v-btn>
+            <v-btn class="mx-4" @click="editRecruitment(recruitment.id)">Edytuj</v-btn>
+            <v-btn @click="deleteRecruitment(recruitment.id)">Usuń</v-btn>
           </p>
           <p>{{ recruitment.city }}, {{ recruitment.workPlace }}</p>
           <p class="mt-4">
@@ -36,11 +36,15 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex-composition-helpers/dist';
+import api from '@/api/recruitments';
+import { useToast } from 'vue-toastification/composition';
 
 const { useActions, useState } = createNamespacedHelpers('recruitments');
 
 export default {
   setup(props, ctx) {
+    const toast = useToast();
+
     const { getRecruitments } = useActions(['getRecruitments']);
     const { recruitments } = useState(['recruitments']);
 
@@ -50,12 +54,27 @@ export default {
       ctx.root.$router.push({ name: 'NewRecruitment' });
     };
 
+    const editRecruitment = (id) => {
+      ctx.root.$router.push({ name: 'EditRecruitment', params: { id } });
+    };
+
+    const deleteRecruitment = async (id) => {
+      try {
+        await api.deleteRecruitment(id);
+        getRecruitments();
+      } catch (e) {
+        toast.error('Coś poszło nie tak :(');
+      }
+    };
+
     const displayDate = (date) => (new Date(date)).toLocaleDateString('pl-Pl');
 
     return {
       recruitments,
       createNewRecruitment,
       displayDate,
+      editRecruitment,
+      deleteRecruitment,
     };
   },
 };

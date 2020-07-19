@@ -1,77 +1,50 @@
 <template>
-  <v-form
-    v-model="isValid.value"
-    class="form-width"
-  >
-    <v-text-field
-      v-for="input of TEXT_INPUTS"
-      :key="formSettings[input].label"
-      outlined
-      :label="formSettings[input].label"
-      :rules="formSettings[input].rules"
-      :type="formSettings[input].type || 'text'"
-      v-model="form[input]"
+  <RecruitmentForm
+    :form="form"
+    :formSettings="formSettings"
+    :isValid="isValid"
+    buttonContent="Dodaj rekrutację"
+    @update:form="updateForm"
+    @update:validation="updateValidation"
+    @execute-function="addRecruitment"
     />
-    <p>{{ formSettings.applicationDate.label }}</p>
-    <v-date-picker
-      v-model="form.applicationDate"
-      first-day-of-week="1"
-      locale="pl"
-    />
-    <v-checkbox
-      v-model="form.companyReply"
-      :label="formSettings.companyReply.label">
-    </v-checkbox>
-    <transition name="slide-fade">
-      <v-date-picker
-        v-if="form.companyReply"
-        v-model="form.dateOfCompanyReply"
-        first-day-of-week="1"
-        locale="pl"
-      />
-    </transition>
-    <br/>
-    <v-btn
-      class="my-6"
-      primary
-      :disabled="!isValid.value"
-      @click="addRecruitment"
-    >
-      Dodaj rekrutacje
-    </v-btn>
-  </v-form>
 </template>
 
 <script>
 import { useRecruitmentForm } from '@/hooks/forms/useRecruitmentForm';
-import { createNamespacedHelpers } from 'vuex-composition-helpers/dist';
-
-const { useActions } = createNamespacedHelpers('recruitments');
+import RecruitmentForm from '@/views/Recruitments/Form.vue';
+import api from '@/api/recruitments';
+import { useToast } from 'vue-toastification/composition';
 
 export default {
+  components: {
+    RecruitmentForm,
+  },
   setup(props, ctx) {
-    const { form, formSettings, isValid } = useRecruitmentForm();
+    const {
+      form, formSettings, isValid, updateForm, updateValidation,
+    } = useRecruitmentForm();
 
-    const TEXT_INPUTS = ['companyName', 'city', 'workPlace', 'linkToApplication', 'notes'];
-
-    const { createRecruitment } = useActions(['createRecruitment']);
+    const toast = useToast();
 
     const addRecruitment = async () => {
-      await createRecruitment(form);
-      ctx.root.$router.push({ name: 'Home' });
+      try {
+        await api.createRecruitment(form);
+        toast.success('Rekrutacja została utworzona!');
+        ctx.root.$router.push({ name: 'Home' });
+      } catch (e) {
+        toast.error('Coś poszło nie tak :(');
+      }
     };
 
     return {
       form,
       formSettings,
       isValid,
-      TEXT_INPUTS,
       addRecruitment,
+      updateForm,
+      updateValidation,
     };
   },
 };
 </script>
-
-<style lang="scss">
-@import "../../styles/views/form.scss";
-</style>

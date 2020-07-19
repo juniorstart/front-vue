@@ -32,10 +32,11 @@ export default {
         commit('SET_IS_API_ERROR', true);
       }
     },
-    async createRecruitment({ commit, dispatch }, payload) {
+    async updateRecruitment({ commit, dispatch }, payload) {
       commit('SET_IS_FETCHING', true);
+      const { recruitment, id } = payload;
       try {
-        await api.createRecruitment(payload);
+        await api.updateRecruitment(id, recruitment);
 
         dispatch('getRecruitments');
       } catch (e) {
