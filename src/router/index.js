@@ -1,9 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { getToken } from '@/utils/getToken';
-import Recruitments from '@/views/Recruitments/Recruitments.vue';
-import NewRecruitment from '@/views/Recruitments/Create.vue';
-import EditRecruitment from '@/views/Recruitments/Edit.vue';
 
 Vue.use(VueRouter);
 
@@ -15,17 +12,27 @@ const routes = [
       {
         path: '',
         name: 'Home',
-        component: Recruitments,
+        component: () => import(/* webpackChunkName: "home" */ '../views/Recruitments/Recruitments.vue'),
       },
       {
         path: 'new',
         name: 'NewRecruitment',
-        component: NewRecruitment,
+        component: () => import(/* webpackChunkName: "home" */ '../views/Recruitments/Create.vue'),
       },
       {
         path: 'recruitment/:id',
         name: 'EditRecruitment',
-        component: EditRecruitment,
+        component: () => import(/* webpackChunkName: "home" */ '../views/Recruitments/Edit.vue'),
+      },
+      {
+        path: 'to-do-lists',
+        name: 'ToDoLists',
+        component: () => import(/* webpackChunkName: "tasks" */ '../views/Tasks/ToDoLists.vue'),
+      },
+      {
+        path: 'to-do-lists/create',
+        name: 'NewToDoList',
+        component: () => import(/* webpackChunkName: "tasks" */ '../views/Tasks/Create.vue'),
       },
     ],
   },

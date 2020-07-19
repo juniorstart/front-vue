@@ -9,7 +9,7 @@
         <v-icon class="mb-1">mdi-calendar-multiple-check</v-icon>
       </v-btn>
 
-      <v-btn>
+      <v-btn @click="goToRoute('ToDoLists')">
         <span>Listy tasków</span>
         <v-icon class="mb-1">mdi-iframe-outline</v-icon>
       </v-btn>

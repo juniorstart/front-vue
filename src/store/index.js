@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import user from '@/store/modules/user';
 import recruitments from '@/store/modules/recruitments';
+import toDoLists from '@/store/modules/toDoLists';
 
 Vue.use(Vuex);
 
@@ -22,5 +23,6 @@ export default new Vuex.Store({
   modules: {
     user,
     recruitments,
+    toDoLists,
   },
 });

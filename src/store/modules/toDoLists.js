@@ -1,15 +1,15 @@
-import api from '@/api/recruitments';
+import api from '@/api/toDoLists';
 
 export default {
   namespaced: true,
   state: {
-    recruitments: [],
+    toDoLists: [],
     isAPIError: false,
     isFetching: false,
   },
   mutations: {
-    SET_RECRUITMENTS(state, payload) {
-      state.recruitments = payload;
+    SET_TO_DO_LISTS(state, payload) {
+      state.toDoLists = payload;
       state.isAPIError = false;
       state.isFetching = false;
     },
@@ -22,11 +22,11 @@ export default {
     },
   },
   actions: {
-    async getRecruitments({ commit }) {
+    async getToDoLists({ commit }) {
       commit('SET_IS_FETCHING', true);
       try {
-        const { data } = await api.getRecruitments();
-        commit('SET_RECRUITMENTS', data);
+        const { data } = await api.getToDoLists();
+        commit('SET_TO_DO_LISTS', data);
       } catch (e) {
         commit('SET_IS_API_ERROR', true);
       }
