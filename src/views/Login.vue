@@ -19,7 +19,7 @@
       </v-checkbox>
       <v-btn primary :disabled="!isValid.value" @click="logIn">Zaloguj się</v-btn>
       <p class="mt-6 mb-2">Nie masz jeszcze konta?</p>
-      <v-btn secondary>Załóż konto</v-btn>
+      <v-btn @click="goToRegister" secondary>Załóż konto</v-btn>
     </v-form>
   </div>
 </template>
@@ -51,12 +51,17 @@ export default {
       }
     };
 
+    const goToRegister = () => {
+      ctx.root.$router.push({ name: 'Register' });
+    };
+
     return {
       form,
       formSettings,
       logIn,
       isValid,
       isRememberMeChecked,
+      goToRegister,
     };
   },
 };
