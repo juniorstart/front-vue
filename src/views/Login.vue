@@ -44,11 +44,8 @@ export default {
 
     const logIn = async () => {
       try {
-        const result = await signIn({ user: form, isRememberMeChecked });
-
-        if (result) {
-          ctx.root.$router.push({ name: 'Home' });
-        }
+        await signIn({ user: form, isRememberMeChecked });
+        ctx.root.$router.push({ name: 'Home' });
       } catch (e) {
         toast.error('Coś poszło nie tak...');
       }

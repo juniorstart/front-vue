@@ -32,7 +32,17 @@ const routes = [
       {
         path: 'to-do-lists/create',
         name: 'NewToDoList',
-        component: () => import(/* webpackChunkName: "tasks" */ '../views/Tasks/Create.vue'),
+        component: () => import(/* webpackChunkName: "tasks" */ '../views/Tasks/CreateList.vue'),
+      },
+      {
+        path: 'to-do-lists/:id/create',
+        name: 'NewTask',
+        component: () => import(/* webpackChunkName: "tasks" */ '../views/Tasks/CreateTask.vue'),
+      },
+      {
+        path: 'to-do-lists/:id/edit',
+        name: 'EditTask',
+        component: () => import(/* webpackChunkName: "tasks" */ '../views/Tasks/EditTask.vue'),
       },
     ],
   },
