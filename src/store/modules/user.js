@@ -14,11 +14,12 @@ export default {
   actions: {
     async signIn({ commit }, payload) {
       const { user, isRememberMeChecked } = payload;
-      return api.login(user).then(({ data }) => {
-        commit('SET_TOKEN', data);
+      const { data } = await api.login(user);
+      commit('SET_TOKEN', data);
 
-        setToken(data, isRememberMeChecked);
-      });
+      setToken(data, isRememberMeChecked);
+
+      return data;
     },
   },
 };
