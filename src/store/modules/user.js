@@ -1,5 +1,6 @@
 import api from '@/api/auth';
 import { setToken } from '@/utils/setToken';
+import { removeToken } from '@/utils/removeToken';
 
 export default {
   namespaced: true,
@@ -20,6 +21,10 @@ export default {
       setToken(data, isRememberMeChecked);
 
       return data;
+    },
+    logout({ commit }) {
+      removeToken();
+      commit('SET_TOKEN', '');
     },
   },
 };

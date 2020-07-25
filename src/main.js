@@ -9,6 +9,7 @@ import vuetify from './plugins/vuetify';
 import 'roboto-fontface/css/roboto/roboto-fontface.css';
 import '@mdi/font/css/materialdesignicons.css';
 import 'vue-toastification/dist/index.css';
+import axios from './api/axios';
 
 Vue.config.productionTip = false;
 
@@ -22,3 +23,11 @@ new Vue({
   vuetify,
   render: (h) => h(App),
 }).$mount('#app');
+
+axios.interceptors.response.use((response) => response, (error) => {
+  if (error.response.data.error.statusCode === 401) {
+    store.dispatch('logout');
+    router.push({ name: 'Login' });
+  }
+  return Promise.reject(error);
+});
